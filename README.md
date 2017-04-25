@@ -5,15 +5,28 @@
 安装
 go get github.com/bitly/go-simplejson
 
+go get github.com/fyqtian/vanConfig
+
 ##Quick Start
 
 ######Create file `hello.go`
 ```go
 package main
 
-import "github.com/astaxie/beego"
+import "github.com/fyqtian/vanConfig"
 
 func main(){
-    beego.Run()
+   configJson := vanConfig.Config{FilePath:"E:/go/2.json",FileType:"json"}
+
+   	err := configJson.Open()
+
+   	if err != nil{
+   		fmt.Print(err)
+   		return
+   	}
+
+   	id := configJson.ParseJson.Get("require").Get("laravel/framework")
+
+   	fmt.Println(id)
 }
 ```
