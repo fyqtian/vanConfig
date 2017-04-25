@@ -16,7 +16,7 @@ package main
 import "github.com/fyqtian/vanConfig"
 
 func main(){
-   configJson := vanConfig.Config{FilePath:"E:/go/2.json",FileType:"json"}
+    configJson := vanConfig.Config{FilePath:"E:/go/2.json",FileType:"json"}
 
    	err := configJson.Open()
 
@@ -28,5 +28,22 @@ func main(){
    	id := configJson.ParseJson.Get("require").Get("laravel/framework")
 
    	fmt.Println(id)
+}
+```
+
+```json
+{
+  "name": "webclient/runchina",
+  "description": "The set of pages used at pptv.",
+  "keywords": ["runchina.pptv.com"],
+  "license": "MIT",
+  "require": {
+    "laravel/framework": "4.2.*",
+    "guzzlehttp/guzzle": "5.*",
+    "webclient/synacast": "1.3.5",
+    "phpspec/phpspec": "~2.1",
+    "maatwebsite/excel": "1.*"
+  },
+  "minimum-stability": "stable"
 }
 ```
