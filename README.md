@@ -21,7 +21,7 @@ func main(){
    	if err != nil {
    		fmt.Println(err)
    	}
-   	fmt.Println(config.ParseJson.Get("id"))
+   	fmt.Println(config.ParseJson.Get("id").Get("van").String())
 }
 ```
 
