@@ -2,8 +2,8 @@ package vanConfig
 
 import (
 	"os"
-	"github.com/bitly/go-simplejson"
 	"io/ioutil"
+	"github.com/bitly/go-simplejson"
 )
 
 type Config struct {
@@ -59,19 +59,6 @@ func (self *Config) read() error {
 		return err
 	}
 	self.Value = tmp
-
-	return nil
-}
-
-func (self *Config) parseJson() error {
-
-	json, err := simplejson.NewJson(self.Value)
-
-	if err != nil {
-		return err
-	}
-
-	self.ParseJson = json
 
 	return nil
 }
