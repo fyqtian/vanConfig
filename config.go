@@ -4,6 +4,8 @@ import (
 	"os"
 	"io/ioutil"
 	"github.com/bitly/go-simplejson"
+	"sync"
+	"errors"
 )
 
 type Config struct {
@@ -17,6 +19,11 @@ type Config struct {
 	Value []byte
 	//
 	ParseJson *simplejson.Json
+	mu *sync.Mutex
+}
+
+func NewConfig(cf *Config)( error){
+	return cf.Open()
 }
 
 func (self *Config) Open() error {
@@ -42,6 +49,8 @@ func (self *Config) Open() error {
 
 	if self.FileType == "json" {
 		err = self.parseJson()
+	}else if self.FileType == "text"{
+		err = self.parseText()
 	}
 
 	if err != nil{
@@ -58,8 +67,22 @@ func (self *Config) read() error {
 	if err != nil {
 		return err
 	}
+	//检测长度
+	if len(tmp) <= 0{
+		return  errors.New("the file is empty")
+	}
+
 	self.Value = tmp
 
 	return nil
 }
 
+func (self *Config)find(f func()){
+
+	self.mu.Lock()
+	defer self.mu.Unlock()
+
+	if(self.FileType == "json"){
+	}
+
+}

@@ -25,7 +25,7 @@ func main(){
    		return
    	}
 
-   	id := configJson.ParseJson.Get("require").Get("laravel/framework")
+   	id := configJson.ParseJson.Get("require").Get("laravel/framework").String()
 
    	fmt.Println(id)
 }
@@ -46,4 +46,13 @@ func main(){
   },
   "minimum-stability": "stable"
 }
+```
+
+```text
+[id]
+name=van
+env=test
+
+[where]
+home=gucun
 ```
