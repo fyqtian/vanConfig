@@ -16,18 +16,12 @@ package main
 import "github.com/fyqtian/vanConfig"
 
 func main(){
-    configJson := vanConfig.Config{FilePath:"E:/go/2.json",FileType:"json"}
-
-   	err := configJson.Open()
-
-   	if err != nil{
-   		fmt.Print(err)
-   		return
+   config := &vanConfig.Config{FilePath: "2.txt", FileType: "text"}
+   	err := vanConfig.NewConfig(config)
+   	if err != nil {
+   		fmt.Println(err)
    	}
-
-   	id := configJson.ParseJson.Get("require").Get("laravel/framework").String()
-
-   	fmt.Println(id)
+   	fmt.Println(config.ParseJson.Get("id"))
 }
 ```
 
